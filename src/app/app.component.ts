@@ -11,7 +11,12 @@ export class AppComponent {
   constructor() {}
 
   ngOnInit() {
-    interval(1000).subscribe(v => console.log("value is " + v));
+    interval(1000)
+    .pipe(take(10), 
+    filter(x => x%2 == 0 ),
+    map(x => Date.now())
+    )
+    .subscribe(v => console.log("value is " + v));
 
 
     // interval(1000)
